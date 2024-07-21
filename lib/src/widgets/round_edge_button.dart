@@ -16,7 +16,7 @@ RoundEdgeButton({required this.child, this.backgroundColor = const Color(0xff681
         onPressed: callback,
         child: child,
         style: ElevatedButton.styleFrom(
-          maximumSize: Size(width!, height!),
+          minimumSize: Size(width!, height!),
         backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius!)

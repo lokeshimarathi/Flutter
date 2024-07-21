@@ -5,7 +5,7 @@ class CustomTextButton extends StatelessWidget{
   void Function() callback;
   double fontSize;
   Color fontColor;
- CustomTextButton({required this.text, required this.callback, this.fontSize = 24.0, this.fontColor = const Color(0xff545A6B)});
+ CustomTextButton({required this.text, required this.callback, this.fontSize = 18.0, this.fontColor = const Color(0xff545A6B)});
   
   @override
   Widget build(BuildContext context){
@@ -15,7 +15,8 @@ class CustomTextButton extends StatelessWidget{
         text,
         style: TextStyle(
           color: fontColor,
-          fontSize: fontSize
+          fontSize: fontSize,
+          fontFamily: 'HelveticaNeueMedium'
         ),
       ),
 
