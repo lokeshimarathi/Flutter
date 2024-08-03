@@ -1,3 +1,4 @@
+import 'package:ayushvi/responsive/app_responsive.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextButton extends StatelessWidget{
@@ -9,14 +10,21 @@ class CustomTextButton extends StatelessWidget{
   
   @override
   Widget build(BuildContext context){
+    AppResponsive responsive = AppResponsive(context);
     return TextButton(
       onPressed: callback,
-      child: Text(
-        text,
-        style: TextStyle(
-          color: fontColor,
-          fontSize: fontSize,
-          fontFamily: 'HelveticaNeueMedium'
+      child: SizedBox(
+        width:responsive.responsiveLengthForWidth(33.0),
+        height: responsive.responsiveLengthForHeight(24.0),
+        child: FittedBox(
+          child: Text(
+            text,
+            style: TextStyle(
+              color: fontColor,
+              fontSize: fontSize,
+              fontFamily: 'HelveticaNeueMedium'
+            ),
+          ),
         ),
       ),
 

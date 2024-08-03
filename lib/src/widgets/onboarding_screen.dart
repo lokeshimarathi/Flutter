@@ -1,3 +1,4 @@
+import 'package:ayushvi/responsive/app_responsive.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingScreen extends StatelessWidget{
@@ -6,39 +7,46 @@ class OnboardingScreen extends StatelessWidget{
   const OnboardingScreen({super.key,  required this.title, required this.description});
   @override
   Widget build(BuildContext context){
+    final double _windowHeight =  MediaQuery.of(context).size.height;
+    final double _windowWidth = MediaQuery.of(context).size.width;
+    final AppResponsive responsive = AppResponsive(context);
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white
       ),
       child: Center(
-        child: Padding(
-          padding: EdgeInsets.only(top: 130.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset('assets/images/OnboardScreenIconOne.png', fit: BoxFit.contain, width: 310.0, height: 314.0,),
-               Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Text(title, style: const TextStyle(
-                  fontFamily: 'HelveticaNeueMedium',
-                  fontSize: 30.0,
-                   color: Color(0xff0B132B)
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset('assets/images/OnboardScreenIconOne.png', fit: BoxFit.contain, width: responsive.responsiveContent(324.0, 310.0).last, height: responsive.responsiveContent(324.0, 310.0).first,),
+            Padding(
+              padding:  EdgeInsets.only(top:responsive.responsiveLengthForHeight(43.0)),
+              child: SizedBox(
+                width: responsive.responsiveContent(73.0, 282.0).last,
+                height: responsive.responsiveContent(73.0, 282.0).first,
+                child: FittedBox(
+                  child: Text(title, 
+                    style: Theme.of(context).textTheme.headlineLarge,
+                    maxLines: 2,
+                    textAlign: TextAlign.center,),
                 ),
-                textAlign: TextAlign.center,),
               ),
-               Padding(
-                padding: const EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
-                child: Text(description,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 16.0,
-                    fontFamily: 'HelveticaNeueMedium',
-                    color: Color(0xFF858995)
-                  ),),
-              )
-            ],
-          ),
+            ),
+            Padding(
+              padding:  EdgeInsets.only(top: responsive.responsiveLengthForHeight(42.0),),
+              child: SizedBox(
+                width: responsive.responsiveContent(65.0, 310.0).last,
+                height: responsive.responsiveContent(65.0, 310.0).first,
+                child: FittedBox(
+                  child: Text(description,
+                      maxLines: 3,
+                      textAlign: TextAlign.center,
+                      style:Theme.of(context).textTheme.headlineSmall),
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:ayushvi/responsive/app_responsive.dart';
 import 'package:ayushvi/sign_in.dart';
 import 'package:ayushvi/src/contents/contents.dart';
 import 'package:ayushvi/src/widgets/onboarding_screen.dart';
@@ -21,131 +22,144 @@ class IntroductionScreenState extends State<IntroductionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final double _windowHeight =  MediaQuery.of(context).size.height;
+    final double _windowWidth = MediaQuery.of(context).size.width;
+    final AppResponsive responsive = AppResponsive(context);
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(),
-        child: Stack(
-          children: [
-            PageView(
-              controller: _controller,
-              onPageChanged: (index) {
-                if (index == 3) {
-                  finalPage = true;
-                } else {
-                  finalPage = false;
-                }
-                setState(() {});
-              },
-              children: const [
-                OnboardingScreen(
-                  title: Contents.onboardingScreenTitleOne,
-                  description: Contents.onboardingScreenDescriptionOne,
-                ),
-                OnboardingScreen(
-                  title: Contents.onboardingScreenTitleTwo,
-                  description: Contents.onboardingScreenDescriptionTwo,
-                ),
-                OnboardingScreen(
-                  title: Contents.onboardingScreenTitleThree,
-                  description: Contents.onboardingScreenDescriptionThree,
-                ),
-                OnboardingScreen(
-                  title: Contents.onboardingScreenTitleFour,
-                  description: Contents.onboardingScreenDescriptionFour,
-                ),
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 73.0, bottom: 40.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/images/OnboardingBar.png',
-                    width: double.infinity,
-                    height: 19.72,
-                    fit: BoxFit.fill,
+        height:_windowHeight,
+        width: _windowWidth,
+        color: Contents.primaryBackgroundColor,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                  padding: EdgeInsets.only(top: responsive.responsiveLengthForHeight(33.0)),
+              child:  Image.asset(
+                'assets/images/OnboardingBar.png',
+                width: responsive.responsiveContent(19.72, 428).last,
+                height: responsive.responsiveContent(19.72, 428).first,
+                fit: BoxFit.fill,
+              ),),
+              Padding(
+                  padding: EdgeInsets.only(top: responsive.responsiveLengthForHeight(37.28),
+                  left: responsive.responsiveLengthForWidth(59.0),
+                  right: responsive.responsiveLengthForWidth(59.0),
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  child: Container(
+                    height:responsive.responsiveContent(547.0, 310.0).first,
+                    width: responsive.responsiveContent(547.0, 310.0).last,
+                    child: PageView(
+                      controller: _controller,
+                      onPageChanged: (index){
+                        if(index == 3){
+                          finalPage = true;
+                        }
+                        else{
+                          finalPage = false;
+                        }
+                        setState(() {
+
+                        });
+                      },
+                      children: [
+                        OnboardingScreen(title: Contents.onboardingScreenTitleOne, description: Contents.onboardingScreenDescriptionOne),
+                        OnboardingScreen(title: Contents.onboardingScreenTitleTwo, description: Contents.onboardingScreenDescriptionTwo),
+                        OnboardingScreen(title: Contents.onboardingScreenTitleThree, description: Contents.onboardingScreenDescriptionThree),
+                        OnboardingScreen(title: Contents.onboardingScreenTitleFour, description: Contents.onboardingScreenDescriptionFour)
+
+
+                      ],
+                    ),
+                  )
+              ),
+              Padding(padding: EdgeInsets.only(top: responsive.responsiveLengthForHeight(40.0)),
+              child: SmoothPageIndicator(
+                controller: _controller,
+                onDotClicked: (index){
+                  _controller.jumpToPage(index);
+                },
+                count: 4,
+                effect: ExpandingDotsEffect(
+                  expansionFactor: 3.0,
+                  dotColor: Contents.secondaryColor,
+                  activeDotColor: Contents.primaryColor,
+                  dotHeight:responsive.responsiveLengthForHeight(12.0),
+                  dotWidth:responsive.responsiveLengthForHeight(12.0),
+                ),
+              ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: responsive.responsiveLengthForHeight(38.94)),
+                child:  Image.asset(
+                  'assets/images/OnboardingBar.png',
+                  width: responsive.responsiveContent(19.72, 428).last,
+                  height: responsive.responsiveContent(19.72, 428).first,
+                  fit: BoxFit.fill,
+                ),),
+              Padding(
+                padding: EdgeInsets.only(top: responsive.responsiveLengthForHeight(39.34)),
+                child: Container(
+
+                  child: !finalPage
+                      ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 20.0),
-                        child: Container(
-                          child: SmoothPageIndicator(
-                            controller: _controller,
-                            count: 4,
-                            effect: const ExpandingDotsEffect(
-                                expansionFactor: 3,
-                                dotWidth: 12.0,
-                                dotHeight: 12.0,
-                                dotColor: Color(0x40681312),
-                                activeDotColor: Color(0xff681312)),
+                      CustomTextButton(
+                          fontSize: 21.6,
+                          text: 'Skip',
+                          callback: () {
+                            _controller.jumpToPage(3);
+                          }),
+                      RoundEdgeButton(
+                        width: responsive.responsiveContent(56.0, 120.0).last,
+                          height: responsive.responsiveContent(56.0, 120.0).first,
+                          child: SizedBox(
+                            width:responsive.responsiveLengthForWidth(33.0),
+                            height: responsive.responsiveLengthForHeight(24.0),
+                            child: FittedBox(
+                              child: const Text(
+                                'Next',
+                                style: TextStyle(
+                                    fontSize: 21.6,
+                                    color: Contents.lightTextColor,
+                                    fontFamily:
+                                    'HelveticaNeueMedium'),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: Image.asset(
-                          'assets/images/OnboardingBar.png',
-                          width: double.infinity,
-                          height: 19.72,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20.0),
-                        child: Container(
-                          alignment: const Alignment(0, 0.90),
-                          child: !finalPage
-                              ? Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    CustomTextButton(
-                                        text: 'Skip',
-                                        callback: () {
-                                          _controller.jumpToPage(3);
-                                        }),
-                                    RoundEdgeButton(
-                                        child: const Text(
-                                          'Next',
-                                          style: TextStyle(
-                                              fontSize: 18.0,
-                                              color: Colors.white,
-                                              fontFamily:
-                                                  'HelveticaNeueMedium'),
-                                        ),
-                                        callback: () {
-                                          _controller.nextPage(
-                                              duration: const Duration(
-                                                  milliseconds: 500),
-                                              curve: Curves.easeIn);
-                                        })
-                                  ],
-                                )
-                              : RoundEdgeButton(
-                                  child: Text(
-                                    'Login',
-                                    style: TextStyle(
-                                        fontSize: 18.0, color: Colors.white),
-                                  ),
-                                  callback: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=> SignIn()));
-                                  },
-                                  width: 388.0,
-                                ),
-                        ),
-                      )
+                          callback: () {
+                            _controller.nextPage(
+                                duration: const Duration(
+                                    milliseconds: 500),
+                                curve: Curves.easeIn);
+                          })
                     ],
                   )
-                ],
-              ),
-            )
-          ],
+                      : RoundEdgeButton(
+                    child: SizedBox(
+                      width:responsive.responsiveLengthForWidth(48.0),
+                      height: responsive.responsiveLengthForHeight(22.0),
+                      child: FittedBox(
+                        child: Text(
+                          'Login',
+                          style: TextStyle(
+                              fontSize: 18.0, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                       callback: () {
+                       Navigator.push(context, MaterialPageRoute(builder: (context)=> SignIn()));
+                      },
+                    width: responsive.responsiveContent(56.0, 388.0).last,
+                    height: responsive.responsiveContent(56.0, 388.0).first,
+                  ),
+                ),
+              )
+
+
+            ],
         ),
       ),
     );

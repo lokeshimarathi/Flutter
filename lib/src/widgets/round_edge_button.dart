@@ -7,7 +7,7 @@ double? borderRadius;
 void Function() callback;
 double? width;
 double? height;
-RoundEdgeButton({required this.child, this.backgroundColor = const Color(0xff681312), this.borderRadius = 14.0, required this.callback, this.width = 120.0, this.height = 56.0});
+RoundEdgeButton({required this.child, this.backgroundColor = const Color(0xff681312), this.borderRadius = 8.0, required this.callback, required this.width, required this.height});
 
 
   @override

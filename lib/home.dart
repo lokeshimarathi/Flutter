@@ -53,7 +53,7 @@ class Home extends StatefulWidget{
               });
             },
             items: [
-              BottomNavigationBarItem(backgroundColor:Colors.white, icon: Icon(Icons.home,), label: 'Home',  ),
+              BottomNavigationBarItem(backgroundColor:Colors.white, icon: Icon(Icons.home, ), label: 'Home',  ),
               BottomNavigationBarItem(backgroundColor:Colors.white,icon: FaIcon(FontAwesomeIcons.userDoctor,), label: 'Doctors',),
               BottomNavigationBarItem(backgroundColor:Colors.white,icon: Icon(Icons.work,), label: 'Records', ),
               BottomNavigationBarItem(backgroundColor:Colors.white,icon: Icon(Icons.chat,), label: 'Chat',),

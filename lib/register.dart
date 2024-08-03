@@ -1,6 +1,8 @@
 import 'package:ayushvi/account_successful.dart';
 import 'package:ayushvi/home.dart';
+import 'package:ayushvi/responsive/app_responsive.dart';
 import 'package:ayushvi/sign_in.dart';
+import 'package:ayushvi/src/contents/contents.dart';
 import 'package:ayushvi/src/widgets/information_divider.dart';
 import 'package:ayushvi/src/widgets/information_text_field.dart';
 import 'package:ayushvi/src/widgets/round_edge_button.dart';
@@ -30,38 +32,37 @@ class _RegisterState extends State<Register> {
   DateTime dateOfBirth = DateTime.now();
   @override
   Widget build(BuildContext context) {
+    AppResponsive appResponsive = AppResponsive(context);
     return Scaffold(
       body: Container(
-        color: Colors.white,
-        height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.only(
-          top: 40.0,
-          left: 20.0,
-          right: 20.0,
-          bottom: 31.0,
-        ),
+        height: MediaQuery.of(context).size.height,
+        color: Contents.primaryBackgroundColor,
+        padding: EdgeInsets.only( top: appResponsive.responsiveLengthForHeight(40.0), left: appResponsive.responsiveLengthForWidth(20.0), right:appResponsive.responsiveLengthForWidth(20.0)  ),
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 50.0,
-              width: 50.0,
+              height: appResponsive.responsiveContent(50.0, 50.0).first,
+              width: appResponsive.responsiveContent(50.0, 50.0).first,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50.0),
-                border: Border.all(
-                  width: 1.0,
-                  color: Color(0xffE7E7EA),
-                ),
-              ),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(
-                  Icons.arrow_back_outlined,
-                  size: 21,
-                  color: Color(0Xff545A6B),
+                  borderRadius: BorderRadius.circular(50.0),
+                  border: Border.all(
+                    width: 1.0,
+                    color: Color(0xffE7E7EA),
+                  )),
+
+              child: FittedBox(
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    Icons.arrow_back_outlined, // Corrected the icon name
+                    size: 21,
+                    color: Color(0Xff545A6B),
+                  ),
                 ),
               ),
             ),
@@ -71,132 +72,177 @@ class _RegisterState extends State<Register> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: Text(
-                        'Register Your Account',
-                        style: TextStyle(
-                          fontFamily: 'HelveticaNeue-Regular',
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.w100,
-                          color: Color(0xff0B132B),
+                      padding:  EdgeInsets.only(top: appResponsive.responsiveLengthForHeight(10.0),),
+                      child: Container(
+                        width: appResponsive.responsiveContent(33.0, 257.0).last,
+                        height:appResponsive.responsiveContent(33.0, 257.0).first,
+                        alignment: Alignment(-1.0,0.0),
+                        padding: EdgeInsets.only(left: 0.0),
+                        child: FittedBox(
+                          child: Text(
+                            'Register your Account',
+                            maxLines: 1,
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontFamily: 'HelveticaNeue-Regular',
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.w100,
+                              color: Color(0xff0B132B),
+                            ),
+                          ),
                         ),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 12.0),
-                      child: Text(
-                        "Your health is our priority. Access personalized care, track your health journey, and connect with your healthcare team. Let's keep you on the path to wellness together.",
-                        style: TextStyle(
-                          fontFamily: 'HelveticaNeue-Regular',
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.normal,
-                          color: Color(0xff858995),
+                      padding:  EdgeInsets.only(top: appResponsive.responsiveLengthForHeight(12.0),),
+                      child: Container(
+                        width: appResponsive.responsiveLengthForWidth(370.0),
+                        height:appResponsive.responsiveLengthForHeight(60.0),
+
+                        child: FittedBox(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Your health is our priority. Access personalized care, track\nyour health journey, and connect with your healthcare team.\nLet's keep you on the path to wellness together.",
+                            maxLines: 3,
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontFamily: 'HelveticaNeue-Regular',
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.normal,
+                              color: Color(0xff858995),
+                            ),
+                          ),
                         ),
                       ),
                     ),
                     InformationTextField(
-                      topPadding: 13.0,
+                      topPadding: appResponsive.responsiveLengthForHeight(13.0),
                       title: 'Enter Your Full Name',
                       textEditingController: name,
                       textInputType: TextInputType.text,
                       prefixIcon: SizedBox(
-                        width: 70.0,
+                        width: appResponsive.responsiveLengthForWidth(70.0),
                         child: Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16.71),
-                              child: Icon(
-                                Icons.account_circle_outlined,
-                                size: 21.0,
-                                color: Color(0xff0B132B),
-                              ),
-                            ),
-                            Container(
-                              color: Color(0xffB6B8BF),
-                              height: 36.0,
-                              width: 1.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    InformationTextField(
-                      topPadding: 13.0,
-                      title: 'Enter Your Email',
-                      textEditingController: email,
-                      textInputType: TextInputType.text,
-                      prefixIcon: SizedBox(
-                        width: 70.0,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16.71),
-                              child: Icon(
-                                Icons.email_outlined,
-                                size: 21.0,
-                                color: Color(0xff0B132B),
-                              ),
-                            ),
-                            Container(
-                              color: Color(0xffB6B8BF),
-                              height: 36.0,
-                              width: 1.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    InformationTextField(
-                      topPadding: 13.0,
-                      title: 'Phone Number',
-                      textEditingController: phoneNumber,
-                      textInputType: TextInputType.phone,
-                      prefixText: '+91',
-                      prefixIcon: SizedBox(
-                        width: 120.0,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16.71),
-                              child: FaIcon(
-                                FontAwesomeIcons.phone,
-                                size: 21.0,
-                                color: Color(0xff0B132B),
-                              ),
-                            ),
-                            Container(
-                              color: Color(0xffB6B8BF),
-                              height: 36.0,
-                              width: 1.0,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 15.0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(4.0),
-                                child: Image.asset(
-                                  'assets/images/IndianFlag.jpg',
-                                  width: 30.0,
-                                  height: 20.0,
-                                  fit: BoxFit.fill,
+                              padding:  EdgeInsets.symmetric(horizontal: appResponsive.responsiveLengthForWidth(16.71)),
+                              child: SizedBox(
+                                width: appResponsive.responsiveLengthForWidth(21.0),
+                                height: appResponsive.responsiveLengthForHeight(21.0),
+                                child: FittedBox(
+                                  child: Icon(
+                                    Icons.account_circle_outlined,
+                                    size: 21.0,
+                                    color: Color(0xff0B132B),
+                                  ),
                                 ),
                               ),
                             ),
-
+                            Container(
+                              color: Color(0xffB6B8BF),
+                              height: appResponsive.responsiveLengthForHeight(36.0),
+                              width: 1.0,
+                            ),
                           ],
                         ),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.only(top: 13.0),
+                    InformationTextField(
+                      topPadding: appResponsive.responsiveLengthForHeight(13.0),
+                      title: 'Enter Your Email',
+                      textEditingController: name,
+                      textInputType: TextInputType.text,
+                      prefixIcon: SizedBox(
+                        width: appResponsive.responsiveLengthForWidth(70.0),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding:  EdgeInsets.symmetric(horizontal: appResponsive.responsiveLengthForWidth(16.71)),
+                              child: SizedBox(
+                                width: appResponsive.responsiveLengthForWidth(21.0),
+                                height: appResponsive.responsiveLengthForHeight(21.0),
+                                child: FittedBox(
+                                  child: Icon(
+                                    Icons.email_outlined,
+                                    size: 21,
+                                    color: Color(0xff0B132B),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              color: Color(0xffB6B8BF),
+                              height: appResponsive.responsiveLengthForHeight(36.0),
+                              width: 1.0,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    InformationTextField(topPadding: appResponsive.responsiveLengthForHeight(17.0), title: 'Phone Number', textEditingController: phoneNumber, textInputType: TextInputType.phone, prefixText: '+91', prefixIcon: SizedBox(
+                      width: appResponsive.responsiveLengthForWidth(120.0),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding:  EdgeInsets.symmetric(horizontal: appResponsive.responsiveLengthForWidth(16.71)),
+                            child: Container(
+                              width:  appResponsive.responsiveLengthForWidth(20.19),
+                              height:  appResponsive.responsiveLengthForHeight(20.57),
+                              child: FittedBox(
+                                alignment: Alignment.centerLeft,
+                                child: FaIcon(
+                                  FontAwesomeIcons.phone,
+                                  size: 21.0,
+                                  color: Color(0xff0B132B),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            color: Color(0xffB6B8BF),
+                            height: appResponsive.responsiveLengthForHeight(36.0),
+                            width: appResponsive.responsiveLengthForWidth(1.0),
+                          ),
+                          Padding(
+                            padding:  EdgeInsets.only(left: appResponsive.responsiveLengthForWidth(15.0)),
+                            child: Container(
+                              width: appResponsive.responsiveLengthForWidth(30.0),
+                              height: appResponsive.responsiveLengthForHeight(20.0),
+                              child: FittedBox(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(4.0),
+                                  child: Image.asset(
+                                    'assets/images/IndianFlag.jpg',
+                                    width: 30.0,
+                                    height: 20.0,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    ),
+                    Padding(padding: EdgeInsets.only(top: appResponsive.responsiveLengthForHeight(13.59)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Date of Birth',
-                            style: TextStyle(
-                              fontFamily: 'Inter-Medium',
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.w100,
-                              color: Color(0xff0B132B),
+                          SizedBox(
+                            width:appResponsive.responsiveLengthForWidth(78.0),
+                            height: appResponsive.responsiveLengthForHeight(19.0),
+                            child: FittedBox(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                'Date of Birth',
+                                style: TextStyle(
+                                  fontFamily: 'Inter-Medium',
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.w100,
+                                  color: Color(0xff0B132B),
+                                ),
+                              ),
                             ),
                           ),
                           InkWell(
@@ -204,12 +250,12 @@ class _RegisterState extends State<Register> {
                               dateOfBirthSelector(context);
                             },
                             child: Container(
-                              width: 388.0,
-                              height: 60.0,
-                              margin: EdgeInsets.only(top: 9.41),
-                              padding: EdgeInsets.symmetric(horizontal: 16.71),
+                              width: appResponsive.responsiveLengthForWidth(388.0),
+                              height: appResponsive.responsiveLengthForHeight(60.0),
+                              margin: EdgeInsets.only(top:appResponsive.responsiveLengthForHeight( 9.41)),
+                              padding: EdgeInsets.symmetric(horizontal: appResponsive.responsiveLengthForWidth(16.71)),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(14.0),
+                                borderRadius: BorderRadius.circular(8.0),
                                 border: Border.all(
                                   width: 1,
                                   color: Color(0xffB6B8BF)
@@ -221,34 +267,50 @@ class _RegisterState extends State<Register> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   SizedBox(
-                                    width: 250.0,
+                                    width: appResponsive.responsiveLengthForWidth(250.0),
                                     child: Row(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(right: 16.71),
-                                          child: FaIcon(
-                                            Icons.calendar_month,
-                                            size: 21.0,
-                                            color: Color(0xff0B132B),
+                                          padding:  EdgeInsets.only(right: appResponsive.responsiveLengthForWidth(16.71)),
+                                          child: SizedBox(
+                                            width: appResponsive.responsiveLengthForWidth(18.66),
+                                            height: appResponsive.responsiveLengthForHeight(20.57),
+                                            child: FittedBox(
+                                              child: FaIcon(
+                                                Icons.calendar_month,
+                                                size: 30.0,
+                                                color: Color(0xff0B132B),
+                                              ),
+                                            ),
                                           ),
                                         ),
                                         Container(
                                           color: Color(0xffB6B8BF),
-                                          height: 36.0,
+                                          height: appResponsive.responsiveLengthForHeight(36.0),
                                           width: 1.0,
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                                          child: Text(DateFormat('d MMMM yyyy').format(dateOfBirth).toString(), style: TextStyle(
-                                            fontSize: 16.0,
-                                            fontFamily: 'Inter-Medium',
-                                            color: Color(0xff0B132B)
-                                          ),),
+                                          padding:  EdgeInsets.symmetric(horizontal: appResponsive.responsiveLengthForWidth(10.0)),
+                                          child: SizedBox(
+                                            width: appResponsive.responsiveLengthForWidth(135.0),
+                                            height: appResponsive.responsiveLengthForHeight(21.0),
+                                            child: FittedBox(
+                                              child: Text(DateFormat('d MMMM yyyy').format(dateOfBirth).toString(), style: TextStyle(
+                                                fontSize: 16.0,
+                                                fontFamily: 'Inter-Medium',
+                                                color: Color(0xff0B132B)
+                                              ),),
+                                            ),
+                                          ),
                                         )
                                       ],
                                     ),
                                   ),
-                                  Icon(Icons.arrow_drop_down_outlined, size: 35.0, color: Color(0xff545A6B),)
+                                  SizedBox(
+                                      width: appResponsive.responsiveLengthForWidth(35.0),
+                                      height: appResponsive.responsiveLengthForHeight(35.0),
+                                     child:  FittedBox(child: Icon(Icons.arrow_drop_down_outlined, size: 35.0, color: Color(0xff545A6B),))
+                                  )
                                 ],
                               )
                             ),
@@ -258,26 +320,32 @@ class _RegisterState extends State<Register> {
                         ],
                       ),
                     ),
-                    Padding(padding: EdgeInsets.only(top: 13.0),
+                    Padding(padding: EdgeInsets.only(top: appResponsive.responsiveLengthForHeight(13.59)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Gender',
-                            style: TextStyle(
-                              fontFamily: 'Inter-Medium',
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.w100,
-                              color: Color(0xff0B132B),
+                          SizedBox(
+                            width:appResponsive.responsiveLengthForWidth(45.0),
+                            height:appResponsive.responsiveLengthForHeight(19.0),
+                            child: FittedBox(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                'Gender',
+                                style: TextStyle(
+                                  fontFamily: 'Inter-Medium',
+                                  fontWeight: FontWeight.w100,
+                                  color: Color(0xff0B132B),
+                                ),
+                              ),
                             ),
                           ),
                           Container(
-                            width: 388.0,
-                            height: 60.0,
-                            margin: EdgeInsets.only(top: 9.41),
-                            padding: EdgeInsets.only(left: 16.71),
+                            width: appResponsive.responsiveLengthForWidth(388.0),
+                            height: appResponsive.responsiveLengthForHeight(60.0),
+                            margin: EdgeInsets.only(top: appResponsive.responsiveLengthForHeight(9.41)),
+                            padding: EdgeInsets.only(left: appResponsive.responsiveLengthForWidth(16.71)),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(14.0),
+                              borderRadius: BorderRadius.circular(8.0),
                               border: Border.all(
                                 width: 1,
                                 color: Color(0xffB6B8BF),
@@ -286,23 +354,29 @@ class _RegisterState extends State<Register> {
                             child: Row(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(right: 16.71),
-                                  child: Icon(
-                                    Icons.transgender,
-                                    size: 21.0,
-                                    color: Color(0xff0B132B),
+                                  padding:  EdgeInsets.only(right: appResponsive.responsiveLengthForWidth(16.71)),
+                                  child: SizedBox(
+                                    width: appResponsive.responsiveLengthForWidth(21.0),
+                                    height: appResponsive.responsiveLengthForHeight(21.0),
+                                    child: FittedBox(
+                                      child: Icon(
+                                        Icons.transgender,
+                                        size: 21.0,
+                                        color: Color(0xff0B132B),
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 Container(
                                   color: Color(0xffB6B8BF),
-                                  height: 36.0,
+                                  height: appResponsive.responsiveLengthForHeight(36.0),
                                   width: 1.0,
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                    padding:  EdgeInsets.symmetric(horizontal: appResponsive.responsiveLengthForWidth(10.0)),
                                     child: DropdownButton<String>(
-                                      borderRadius: BorderRadius.circular(14.0),
+                                      borderRadius: BorderRadius.circular(8.0),
                                       value: gender,
                                       dropdownColor: Colors.white,
                                       isExpanded: true,
@@ -312,8 +386,11 @@ class _RegisterState extends State<Register> {
                                         color: Color(0xff0B132B),
                                       ),
                                       underline: SizedBox(),
-                                      icon: Icon(Icons.arrow_drop_down_outlined, color: Color(0xff545A6B),),
-                                      iconSize:35.0,
+                                      icon: SizedBox(
+                                        width: appResponsive.responsiveLengthForWidth(30.0),
+                                          height: appResponsive.responsiveLengthForHeight(30.0),
+                                          child: FittedBox(child: Icon(Icons.arrow_drop_down_outlined, color: Color(0xff545A6B),))),
+                                      iconSize:30.0,
                                       onChanged: (value) {
                                         setState(() {
                                           gender = value.toString();
@@ -336,26 +413,32 @@ class _RegisterState extends State<Register> {
                         ],
                       ),
                     ),
-                    Padding(padding: EdgeInsets.only(top: 13.0),
+                    Padding(padding: EdgeInsets.only(top: appResponsive.responsiveLengthForHeight(13.59)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Age',
-                            style: TextStyle(
-                              fontFamily: 'Inter-Medium',
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.w100,
-                              color: Color(0xff0B132B),
+                          SizedBox(
+                            width:appResponsive.responsiveLengthForWidth(45.0),
+                            height:appResponsive.responsiveLengthForHeight(19.0),
+                            child: FittedBox(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                'Age',
+                                style: TextStyle(
+                                  fontFamily: 'Inter-Medium',
+                                  fontWeight: FontWeight.w100,
+                                  color: Color(0xff0B132B),
+                                ),
+                              ),
                             ),
                           ),
                           Container(
-                            width: 388.0,
-                            height: 60.0,
-                            margin: EdgeInsets.only(top: 9.41),
-                            padding: EdgeInsets.only(left: 16.71),
+                            width: appResponsive.responsiveLengthForWidth(388.0),
+                            height: appResponsive.responsiveLengthForHeight(60.0),
+                            margin: EdgeInsets.only(top: appResponsive.responsiveLengthForHeight(9.41)),
+                            padding: EdgeInsets.only(left: appResponsive.responsiveLengthForWidth(16.71)),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(14.0),
+                              borderRadius: BorderRadius.circular(8.0),
                               border: Border.all(
                                 width: 1,
                                 color: Color(0xffB6B8BF),
@@ -364,23 +447,29 @@ class _RegisterState extends State<Register> {
                             child: Row(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(right: 16.71),
-                                  child: Icon(
-                                    Icons.account_circle_outlined,
-                                    size: 21.0,
-                                    color: Color(0xff0B132B),
+                                  padding:  EdgeInsets.only(right: appResponsive.responsiveLengthForWidth(16.71)),
+                                  child: SizedBox(
+                                    width: appResponsive.responsiveLengthForWidth(21.0),
+                                    height: appResponsive.responsiveLengthForHeight(21.0),
+                                    child: FittedBox(
+                                      child: Icon(
+                                        Icons.account_circle_outlined,
+                                        size: 21.0,
+                                        color: Color(0xff0B132B),
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 Container(
                                   color: Color(0xffB6B8BF),
-                                  height: 36.0,
+                                  height: appResponsive.responsiveLengthForHeight(36.0),
                                   width: 1.0,
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                    padding:  EdgeInsets.symmetric(horizontal: appResponsive.responsiveLengthForWidth(10.0)),
                                     child: DropdownButton<String>(
-                                      borderRadius: BorderRadius.circular(14.0),
+                                      borderRadius: BorderRadius.circular(8.0),
                                       value: age,
                                       dropdownColor: Colors.white,
                                       isExpanded: true,
@@ -390,11 +479,14 @@ class _RegisterState extends State<Register> {
                                         color: Color(0xff0B132B),
                                       ),
                                       underline: SizedBox(),
-                                      icon: Icon(Icons.arrow_drop_down_outlined, color: Color(0xff545A6B),),
-                                      iconSize:35.0,
+                                      icon: SizedBox(
+                                          width: appResponsive.responsiveLengthForWidth(30.0),
+                                          height: appResponsive.responsiveLengthForHeight(30.0),
+                                          child: FittedBox(child: Icon(Icons.arrow_drop_down_outlined, color: Color(0xff545A6B),))),
+                                      iconSize:30.0,
                                       onChanged: (value) {
                                         setState(() {
-                                          age = value.toString();
+                                          gender = value.toString();
                                         });
                                       },
                                       items: ageList.map((value) {
@@ -409,121 +501,178 @@ class _RegisterState extends State<Register> {
                               ],
                             ),
                           ),
-                          InformationTextField(
-                            topPadding: 13.0,
-                            title: 'Occupation',
-                            textEditingController: occupation,
-                            textInputType: TextInputType.text,
-                            prefixIcon: SizedBox(
-                              width: 70.0,
-                              child: Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 16.71),
-                                    child: Icon(
-                                      Icons.work_outline,
-                                      size: 21.0,
-                                      color: Color(0xff0B132B),
-                                    ),
+
+
+                        ],
+                      ),
+                    ),
+                    InformationTextField(
+                      topPadding: appResponsive.responsiveLengthForHeight(13.0),
+                      title: 'Occupation',
+                      textEditingController: occupation,
+                      textInputType: TextInputType.text,
+                      prefixIcon: SizedBox(
+                        width: 70.0,
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding:  EdgeInsets.symmetric(horizontal: appResponsive.responsiveLengthForWidth(16.71)),
+                              child: SizedBox(
+                                width: appResponsive.responsiveLengthForWidth(21.0),
+                                height: appResponsive.responsiveLengthForHeight(21.0),
+                                child: FittedBox(
+                                  child: Icon(
+                                    Icons.work_outline,
+                                    size: 21.0,
+                                    color: Color(0xff0B132B),
                                   ),
-                                  Container(
-                                    color: Color(0xffB6B8BF),
-                                    height: 36.0,
-                                    width: 1.0,
-                                  ),
-                                ],
+                                ),
                               ),
                             ),
-                          ),
-                          Row(
-                            children: [
-                              Checkbox(value: privacyPolicyCheckBox, onChanged: (boolean){
-                                setState(() {
-                                  privacyPolicyCheckBox = boolean!;
-                                });
-                              }, checkColor: Colors.white,
-                                activeColor: Color(0xff681312),),
-                              Text('By registering you’re agreeing to terms & conditions of Ayushvi.', style: TextStyle(
-                                  fontFamily: 'Inter-Medium',
-                                  fontSize: 9.0,
-                                  color: Color(0xff545A6B)
-                              ),)
-                            ],
-                          ),
-
-                          Padding(padding: EdgeInsets.only(top: 24.33,), child: RoundEdgeButton(
-                            child: Text(
-                              'Register',
-                              style: TextStyle(
-                                  fontSize: 18.0, color: Colors.white),
+                            Container(
+                              color: Color(0xffB6B8BF),
+                              height: appResponsive.responsiveLengthForHeight(36.0),
+                              width: 1.0,
                             ),
-                            callback: () {
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> AccountSuccessful()));
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:  EdgeInsets.only(top: appResponsive.responsiveLengthForHeight(24.59)),
+                      child: SizedBox(
+
+                        height: appResponsive.responsiveLengthForHeight(15.43),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: appResponsive.responsiveLengthForWidth(15.43),
+                              height: appResponsive.responsiveLengthForHeight(15.43),
+                              child: FittedBox(
+                                child: SizedBox(
+                                  width:15.43,
+                                  height: 15.43,
+                                  child: Checkbox(value: privacyPolicyCheckBox, onChanged: (boolean){
+                                    setState(() {
+                                      privacyPolicyCheckBox = boolean!;
+                                    });
+                                  }, checkColor: Colors.white,
+                                    activeColor: Color(0xff681312),),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding:  EdgeInsets.only(left: appResponsive.responsiveLengthForWidth(10.0)),
+                              child: SizedBox(
+                                width: appResponsive.responsiveLengthForWidth(300.0),
+                                height: appResponsive.responsiveLengthForHeight(16.0),
+                                child: FittedBox(
+                                  child: Text('By registering you’re agreeing to terms & conditions of Ayushvi.', style: TextStyle(
+                                      fontFamily: 'Inter-Medium',
+                                      fontSize: 12.0,
+                                      color: Color(0xff545A6B)
+                                  ),),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(padding: EdgeInsets.only(top: appResponsive.responsiveLengthForHeight(24.33),),
+                    child: RoundEdgeButton(
+
+                      child: SizedBox(
+                        width: appResponsive.responsiveLengthForWidth(74.0),
+                        height: appResponsive.responsiveLengthForHeight(22.0),
+                        child: FittedBox(
+                          child: Text(
+                            'Register',
+                            style: TextStyle(
+                                fontSize: 18.0, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                      callback: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> AccountSuccessful()));
+
+                      },
+                      width: AppResponsive(context).responsiveContent(56.0, 388.0).last,
+                      height: AppResponsive(context).responsiveContent(56.0, 388.0).first,
+                      backgroundColor:Color(0xff681312),
+                    ),),
+                    InformationDivider(topPadding: appResponsive.responsiveLengthForHeight(24.0),),
+                    Padding(
+                      padding:  EdgeInsets.only(top: appResponsive.responsiveLengthForHeight(25.0),),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: signInOptionsImages.map((icons){
+                          return InkWell(
+                            onTap: (){
 
                             },
-                            width: 388.0,
-                            backgroundColor:Color(0xff681312),
-                          ),),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 0.0, right: 0.0,),
-                            child: InformationDivider(topPadding: 24.0,),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 25.0,),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: signInOptionsImages.map((icons){
-                                return InkWell(
-                                  onTap: (){
-
-                                  },
-                                  child: Container(
-                                    width: 110.0,
-                                    height: 60.0,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(60.0),
-                                      border: Border.all(
-                                          color: Color(0xffE7E7EA),
-                                          width: 1.0
-                                      ),
-                                    ),
-                                    child: Center(
-                                      child: icons,
-                                    ),
+                            child: Container(
+                              width: appResponsive.responsiveContent(60.0,110.0).last,
+                              height: appResponsive.responsiveContent(60.0,110.0).first,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(60.0),
+                                border: Border.all(
+                                    color: Color(0xffE7E7EA),
+                                    width: 1.0
+                                ),
+                              ),
+                              child: Center(
+                                child: SizedBox(
+                                  width: appResponsive.responsiveLengthForWidth(25.76),
+                                  height: appResponsive.responsiveLengthForHeight(21.09),
+                                  child: FittedBox(
+                                    child: icons,
                                   ),
-                                );
-                              }).toList() ,
+                                ),
+                              ),
                             ),
+                          );
+                        }).toList() ,
+                      ),
 
+                    ),
+                    Padding(padding: EdgeInsets.only(top: appResponsive.responsiveLengthForHeight(19.0), bottom: appResponsive.responsiveLengthForHeight(31.0)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width:appResponsive.responsiveLengthForWidth(165.0),
+                            height: appResponsive.responsiveLengthForHeight(21.0),
+                            child: FittedBox(
+                              child: Text('Already have an account?', style: TextStyle(
+                                  color: Color(0xff545A6B),
+                                  fontSize: 16.0,
+                                  fontFamily: 'Inter-Medium'
+                              ),),
+                            ),
                           ),
-                          Padding(padding: EdgeInsets.only(top: 19.0),
-
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 0.0, right: 0.0,),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Text('Already have an account?', style: TextStyle(
-                                      color: Color(0xff545A6B),
+                          Padding(
+                            padding:  EdgeInsets.only(left: appResponsive.responsiveLengthForWidth(18.0), ),
+                            child: InkWell(
+                              onTap: (){
+                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SignIn()));
+                              },
+                              child: SizedBox(
+                                width:appResponsive.responsiveLengthForWidth(128.0),
+                                height: appResponsive.responsiveLengthForHeight(21.0),
+                                child: FittedBox(
+                                  child: Text('Create an account', style: TextStyle(
+                                      color: Color(0xff681312),
                                       fontSize: 16.0,
                                       fontFamily: 'Inter-Medium'
                                   ),),
-                                  InkWell(
-                                    onTap: (){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> SignIn()));
-                                    },
-                                    child: Text('SignIn Here', style: TextStyle(
-                                        color: Color(0xff681312),
-                                        fontSize: 16.0,
-                                        fontFamily: 'Inter-Medium'
-                                    ),),
-                                  )
-                                ],
+                                ),
                               ),
-                            ),),
+                            ),
+                          )
                         ],
-                      ),
-                    )
+                      ),),
+
                   ],
                 ),
               ),
