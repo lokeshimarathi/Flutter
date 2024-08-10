@@ -150,7 +150,7 @@ class _RegisterState extends State<Register> {
                     InformationTextField(
                       topPadding: appResponsive.responsiveLengthForHeight(13.0),
                       title: 'Enter Your Email',
-                      textEditingController: name,
+                      textEditingController: email,
                       textInputType: TextInputType.text,
                       prefixIcon: SizedBox(
                         width: appResponsive.responsiveLengthForWidth(70.0),
@@ -486,12 +486,13 @@ class _RegisterState extends State<Register> {
                                       iconSize:30.0,
                                       onChanged: (value) {
                                         setState(() {
-                                          gender = value.toString();
+                                          age = value.toString();
                                         });
                                       },
                                       items: ageList.map((value) {
                                         return DropdownMenuItem<String>(
                                           value: value,
+
                                           child: Text(value),
                                         );
                                       }).toList(),
@@ -661,7 +662,7 @@ class _RegisterState extends State<Register> {
                                 width:appResponsive.responsiveLengthForWidth(128.0),
                                 height: appResponsive.responsiveLengthForHeight(21.0),
                                 child: FittedBox(
-                                  child: Text('Create an account', style: TextStyle(
+                                  child: Text('SignIn Here', style: TextStyle(
                                       color: Color(0xff681312),
                                       fontSize: 16.0,
                                       fontFamily: 'Inter-Medium'

@@ -719,6 +719,7 @@ class _HomeState extends State<HomeScreen> {
                       width: appResponsive.responsiveLengthForWidth(135.0),
                       height: appResponsive.responsiveLengthForHeight(20.0),
                       child: FittedBox(
+                        alignment: Alignment.centerLeft,
                         child: Text(
                           'Knowledge Base',
                           style: TextStyle(
